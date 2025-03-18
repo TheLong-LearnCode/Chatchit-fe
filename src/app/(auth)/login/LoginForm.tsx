@@ -9,9 +9,15 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { login } from "@/service/api";
+
+interface formValue {
+  email: string;
+  password: string;
+}
 
 const schema = z.object({
-  name: z.string().min(3, "Username phải có ít nhất 3 ký tự"),
+  email: z.string().email("Email không hợp lệ"),
   password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
 });
 
@@ -24,14 +30,19 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: formValue) => {
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const result = await login(data);
+      console.log("Login successfully:", result);
       toast.success("Đăng nhập thành công 🎉");
-      console.log("Đăng nhập thành công:", data);
       setLoading(false);
       router.push("/");
-    }, 2000);
+    } catch (error) {
+      console.error("Failed to login:", error);
+      toast.error("Đăng nhập thất bại 😢");
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,17 +54,28 @@ export default function LoginForm() {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <Label htmlFor="name" className="mb-2">Name</Label>
-              <Input id="name" {...register("name")} placeholder="Nhập name" />
-              {errors.name && (
-                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              <Label htmlFor="email" className="mb-2">
+                Email
+              </Label>
+              <Input id="email" {...register("email")} placeholder="Nhập email" />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
             </div>
             <div>
-              <Label htmlFor="password" className="mb-2">Mật khẩu</Label>
-              <Input id="password" type="password" {...register("password")} placeholder="Nhập mật khẩu" />
+              <Label htmlFor="password" className="mb-2">
+                Mật khẩu
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                {...register("password")}
+                placeholder="Nhập mật khẩu"
+              />
               {errors.password && (
-                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.password.message}
+                </p>
               )}
             </div>
             <Button type="submit" className="w-full" disabled={loading}>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -9,6 +8,13 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/service/api";
+
+interface formValue{
+  name: string;
+  email: string;
+  password: string;
+}
 
 const schema = z.object({
   name: z.string().min(3, "Username phải có ít nhất 3 ký tự"),
@@ -25,14 +31,19 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: formValue) => {
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const result = await createUser(data);
+      console.log('User created successfully:', result);
       toast.success("Đăng ký thành công 🎉");
-      console.log("Đăng ký thành công:", data);
       setLoading(false);
       router.push("/login");
-    }, 2000);
+    } catch (error) {
+      console.error('Failed to create user:', error);
+      toast.error("Đăng ký thất bại 😢");
+      setLoading(false);
+    }
   };
 
   return (
