@@ -50,7 +50,12 @@ export default function RegisterForm() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
-          <CardTitle className="text-center text-xl">Đăng ký</CardTitle>
+        <CardTitle className="text-center text-xl flex items-center justify-center space-x-2">
+            <div className="font-bold">Real Chat</div>
+            <div className="text-neutral-500 dark:text-neutral-400">
+              | Đăng ký
+            </div>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

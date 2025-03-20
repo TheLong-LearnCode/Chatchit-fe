@@ -49,7 +49,12 @@ export default function LoginForm() {
     <div className="flex items-center justify-center min-h-screen p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
-          <CardTitle className="text-center text-xl">Đăng nhập</CardTitle>
+          <CardTitle className="text-center text-xl flex items-center justify-center space-x-2">
+            <div className="font-bold">Real Chat</div>
+            <div className="text-neutral-500 dark:text-neutral-400">
+              | Đăng nhập
+            </div>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -57,7 +62,11 @@ export default function LoginForm() {
               <Label htmlFor="email" className="mb-2">
                 Email
               </Label>
-              <Input id="email" {...register("email")} placeholder="Nhập email" />
+              <Input
+                id="email"
+                {...register("email")}
+                placeholder="Nhập email"
+              />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
               )}
@@ -81,6 +90,13 @@ export default function LoginForm() {
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Đang đăng nhập..." : "Đăng nhập"}
             </Button>
+
+            <div
+              onClick={() => router.push("/register")}
+              className="text-right mt-1 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 cursor-pointer transition-colors duration-200"
+            >
+              Bạn chưa có tài khoản?
+            </div>
           </form>
         </CardContent>
       </Card>

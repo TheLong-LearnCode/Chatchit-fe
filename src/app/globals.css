@@ -121,3 +121,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+.animated-bg {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6a65, #ff5f3e);
+  background-size: 700% 700%;
+  animation: vividGradientAnimation 8s linear infinite;
+}
+
+.dark .animated-bg {
+  background: linear-gradient(90deg, #1e293b, #334155, #475569, #0f172a);
+  background-size: 700% 700%;
+  animation: vividGradientAnimation 8s linear infinite;
+}
+
+@keyframes vividGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

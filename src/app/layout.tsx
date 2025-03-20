@@ -18,7 +18,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <ToastContainer position="top-right" autoClose={3000} />
+          <ToastContainer position="top-right" autoClose={3000} theme="colored"/>
         </ThemeProvider>
       </body>
     </html>
