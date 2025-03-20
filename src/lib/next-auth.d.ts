@@ -9,6 +9,7 @@ declare module "next-auth" {
             isActive: boolean;
             role: string;
             accountType: string;
+            image: string;
         };
         backendTokens: {
             accessToken: string;
@@ -29,6 +30,7 @@ declare module "next-auth/jwt" {
             isActive: boolean;
             role: string;
             accountType: string;
+            image: string;
         };
         backendTokens: {
             accessToken: string;

@@ -4,9 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { FiSend } from "react-icons/fi";
 
 export default function ChatBox() {
-  const [messages, setMessages] = useState<
+    const [messages, setMessages] = useState<
     { text: string; sender: "user" | "bot" }[]
   >([]);
   const [input, setInput] = useState("");
@@ -52,10 +53,17 @@ export default function ChatBox() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                sendMessage();
+              }
+            }}
             placeholder="Type a message..."
             className="flex-1"
           />
-          <Button onClick={sendMessage}>Send</Button>
+          <Button onClick={sendMessage}>
+            <FiSend />
+          </Button>
         </div>
       </CardContent>
     </Card>

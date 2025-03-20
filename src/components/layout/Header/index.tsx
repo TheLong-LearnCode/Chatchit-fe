@@ -2,6 +2,7 @@
 import ButtonLogout from "@/components/layout/Header/ButtonLogout";
 import { ModeToggle } from "@/components/toggle-theme";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -14,7 +15,7 @@ export default function Header() {
       <div className="flex justify-center items-center space-x-2">
         {session && session.user && (
           <div className="text-lg font-semibold text-neutral-500 dark:text-neutral-400">
-            {session.user.name}
+            <Image src={session.user.image} alt="avatar" width={40} height={40} className="rounded-full" />
           </div>
         )}
         <ModeToggle />
