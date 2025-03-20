@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { login } from "@/service/api";
+import { signIn } from "next-auth/react";
 
 interface formValue {
   email: string;
@@ -32,16 +32,22 @@ export default function LoginForm() {
 
   const onSubmit = async (data: formValue) => {
     setLoading(true);
-    try {
-      const result = await login(data);
+
+    const result = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    if (result?.error) {
+      toast.error("Đăng nhập thất bại 😢");
+      setLoading(false);
+      console.log("CHECK ERROR: ", result.error);
+      return;
+    } else {
       console.log("Login successfully:", result);
       toast.success("Đăng nhập thành công 🎉");
       setLoading(false);
       router.push("/");
-    } catch (error) {
-      console.error("Failed to login:", error);
-      toast.error("Đăng nhập thất bại 😢");
-      setLoading(false);
     }
   };
 

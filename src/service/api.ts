@@ -16,17 +16,3 @@ export const createUser = async (userData: Record<string, any>) => {
     throw error;
   }
 };
-
-export const login = async (userData: Record<string, any>) => {
-    try {
-      const response = await axios.post(`${API_URL}auth/login`, userData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
-    }
-  };

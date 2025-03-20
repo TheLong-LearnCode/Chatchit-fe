@@ -1,7 +1,10 @@
+"use client";
+import ButtonLogout from "@/components/layout/Header/ButtonLogout";
 import { ModeToggle } from "@/components/toggle-theme";
-import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
   return (
     <header className="shadow-md px-6 py-4 flex items-center justify-between">
       <div className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text transition-transform duration-300 hover:scale-110">
@@ -9,10 +12,13 @@ export default function Header() {
       </div>
 
       <div className="flex justify-center items-center space-x-2">
+        {session && session.user && (
+          <div className="text-lg font-semibold text-neutral-500 dark:text-neutral-400">
+            {session.user.name}
+          </div>
+        )}
         <ModeToggle />
-        <Button className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white font-semibold rounded-lg shadow-md hover:from-red-600 hover:to-orange-600 transition-all duration-300">
-          Log out
-        </Button>
+        <ButtonLogout />
       </div>
     </header>
   );
