@@ -18,6 +18,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
     );
 
     const response = res.data;
+    console.log(response);
 
     return {
       ...token,

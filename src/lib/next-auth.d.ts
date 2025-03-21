@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 
+console.log(NextAuth);
 declare module "next-auth" {
     interface Session {
         user: {
@@ -20,6 +21,8 @@ declare module "next-auth" {
 }
 
 import { JWT } from "next-auth/jwt";
+
+console.log(JWT)
 
 declare module "next-auth/jwt" {
     interface JWT {

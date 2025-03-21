@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { API_URL } from '@/lib/Constants';
 import axios from 'axios';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1/';
 
 export const createUser = async (userData: Record<string, any>) => {
   try {
@@ -16,3 +15,4 @@ export const createUser = async (userData: Record<string, any>) => {
     throw error;
   }
 };
+
