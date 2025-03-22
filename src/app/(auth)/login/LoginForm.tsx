@@ -38,10 +38,10 @@ export default function LoginForm() {
       password: data.password,
       redirect: false,
     });
-    if (result?.error) {
+    if (result?.error !== null) {
       toast.error("Đăng nhập thất bại 😢");
       setLoading(false);
-      console.log("CHECK ERROR: ", result.error);
+      console.log("CHECK ERROR: ", result?.error);
       return;
     } else {
       console.log("Login successfully:", result);

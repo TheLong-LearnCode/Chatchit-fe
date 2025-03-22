@@ -20,6 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import DropdownMenuOption from "@/components/layout/ChatBox/DropdownMenuOption";
 
 export default function ChatBox() {
   const { data: session } = useSession();
@@ -251,11 +252,11 @@ export default function ChatBox() {
 
                           <div
                             key={index}
-                            className={`p-2 max-w-xs rounded-lg mb-1 bg-gray-200 text-gray-800 self-end`}
+                            className={`p-2 max-w-xs rounded-lg mb-1 dark:bg-gray-200 dark:text-gray-800 bg-gray-800 text-gray-200 self-end`}
                           >
                             {msg.text}
                             {isLastMessageBySender && (
-                              <div className="text-sm text-right text-gray-400">
+                              <div className="text-sm text-right dark:text-gray-400 text-gray-500">
                                 {msg.time}
                               </div>
                             )}
@@ -267,7 +268,7 @@ export default function ChatBox() {
                             alt="avatar"
                             height={40}
                             width={40}
-                            className="object-contain rounded-full mb-3.5"
+                            className="object-contain rounded-full mt-7"
                           />
                         )}
                         {!isFirstMessageBySender && (
@@ -285,7 +286,7 @@ export default function ChatBox() {
                             alt="avatar"
                             height={40}
                             width={40}
-                            className="object-contain rounded-full mb-3.5"
+                            className="object-contain rounded-full mt-7"
                           />
                         )}
                         <div className="flex flex-col gap-1 items-start">
@@ -297,11 +298,11 @@ export default function ChatBox() {
 
                           <div
                             key={index}
-                            className={`p-2 max-w-xs rounded-lg mb-1 bg-blue-500 text-white self-start`}
+                            className={`p-2 max-w-xs rounded-lg mb-1 dark:bg-pink-800 text-white bg-pink-400 self-start`}
                           >
                             {msg.text}
                             {isLastMessageBySender && (
-                              <div className="text-sm text-right text-gray-200">
+                              <div className="text-sm text-right text-gray-50">
                                 {msg.time}
                               </div>
                             )}
@@ -315,6 +316,7 @@ export default function ChatBox() {
             </div>
           </ScrollArea>
           <div className="flex items-center gap-2 pt-3">
+            <DropdownMenuOption />
             <Input
               type="text"
               value={input}
