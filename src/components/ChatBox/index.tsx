@@ -314,7 +314,7 @@ export default function ChatBox() {
                   <BsEmojiSmile />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent>
+              <PopoverContent  className="w-48 translate-x-[-190px]">
                 <EmojiPicker
                   onEmojiClick={(emojiData) =>
                     setInput((prev) => prev + emojiData.emoji)

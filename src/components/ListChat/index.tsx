@@ -1,9 +1,8 @@
-"use client"
+"use client";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { FaSearch } from "react-icons/fa";
-import { Badge } from "@/components/ui/badge"; // Import Badge component
 import Image from "next/image";
 import GroupCreate from "@/components/ListChat/GroupCreate";
 
@@ -51,9 +50,9 @@ export default function ListChat() {
       <div className="space-y-2">
         {friendsAndGroups.map((item) => (
           <Card
-          key={item.id}
-          className="p-4 cursor-pointer transition-all easeInOut duration-300 hover:shadow-lg hover:bg-zinc-800"
-        >        
+            key={item.id}
+            className="p-4 cursor-pointer transition-all easeInOut duration-300 hover:shadow-lg hover:bg-zinc-800"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Image
@@ -63,24 +62,15 @@ export default function ListChat() {
                   height={60}
                   className="rounded-full"
                 />
-                <div>
-                  <div className="text-sm font-medium">{item.name}</div>
-                </div>
-              </div>
-              <Badge
-                className={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
-                  item.status === "online"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-gray-100 text-gray-800"
-                }`}
-              >
                 <span
                   className={`w-2 h-2 rounded-full ${
                     item.status === "online" ? "bg-green-500" : "bg-gray-500"
                   }`}
                 ></span>
-                {item.status === "online" ? "Online" : "Offline"}
-              </Badge>
+                <div>
+                  <div className="text-sm font-medium">{item.name}</div>
+                </div>
+              </div>
             </div>
           </Card>
         ))}

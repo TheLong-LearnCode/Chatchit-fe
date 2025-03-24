@@ -151,33 +151,42 @@
 
 /* Thành công (Success) */
 .Toastify__toast--success {
-  background: linear-gradient(135deg, #16a34a, #15803d) !important;
+  background:  linear-gradient(0deg, rgb(34, 189, 192) 0%, rgba(253,187,45,1) 100%) !important;
   color: white !important;
   font-weight: 500 !important;
-  border-left: 5px solid #22c55e !important;
-  box-shadow: 0px 4px 10px rgba(34, 197, 94, 0.3) !important;
+  border-left: 5px solid rgb(40, 164, 166) !important;
+  box-shadow: 0px 4px 10px rgba(253,187,45,1) !important;
 }
 
 /* Thất bại (Error) */
 .Toastify__toast--error {
-  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  background: linear-gradient(90deg, rgba(63,94,251,1) 35%, rgba(252,70,76,1) 88%) !important;
   color: white !important;
   font-weight: 500 !important;
-  border-left: 5px solid #f87171 !important;
-  box-shadow: 0px 4px 10px rgba(239, 68, 68, 0.3) !important;
+  border-left: 5px solid rgba(63,94,251,1) !important;
+  box-shadow: 0px 4px 10px rgba(252,70,76,1) !important;
 }
 
 /* Thông báo (Info) */
 .Toastify__toast--info {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%) !important;
   color: white !important;
   font-weight: 500 !important;
-  border-left: 5px solid #60a5fa !important;
-  box-shadow: 0px 4px 10px rgba(59, 130, 246, 0.3) !important;
+  border-left: 5px solid rgba(9,9,121,1) !important;
+  box-shadow: 0px 4px 10px rgba(0,212,255,1) !important;
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(90deg, rgba(183,183,183,1) 52%, rgba(226,211,60,1) 100%) !important;
+  color: white !important;
+  font-weight: 500 !important;
+  border-left: 5px solid rgba(183,183,183,1) !important;
+  box-shadow: 0px 4px 10px rgba(245,245,247,1) !important;
 }
 
 .Toastify__toast {
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 16px;
+  min-height: 30px !important; /* Giảm chiều cao */
+  padding: 8px 12px !important; /* Thu nhỏ padding */
+  font-size: 14px !important; /* Giảm kích thước chữ */
+  border-radius: 6px !important; /* Bo góc mềm mại */
 }

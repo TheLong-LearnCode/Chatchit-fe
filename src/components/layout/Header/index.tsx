@@ -1,4 +1,5 @@
 "use client";
+import Notification from "@/components/layout/Header/Notification";
 import UserDropdown from "@/components/layout/Header/UserDropdown";
 import { ModeToggle } from "@/components/toggle-theme";
 import { useSession } from "next-auth/react";
@@ -15,6 +16,7 @@ export default function Header() {
 
       <div className="flex justify-center items-center space-x-2">
         <ModeToggle />
+        <Notification />
         {session && session.user && <UserDropdown user={session.user}/>}
       </div>
     </header>
