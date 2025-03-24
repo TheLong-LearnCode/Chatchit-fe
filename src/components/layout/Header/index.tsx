@@ -9,7 +9,7 @@ export default function Header() {
   const router = useRouter();
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-[#121216] shadow-md px-6 py-4 flex items-center justify-between">
-      <div onClick={() => router.push('/')} className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text transition-transform duration-300 hover:scale-110">
+      <div onClick={() => router.push('/')} className="cursor-pointer text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text transition-transform duration-300 hover:scale-110">
         Real Chat
       </div>
 

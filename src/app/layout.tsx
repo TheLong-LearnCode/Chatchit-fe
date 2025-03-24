@@ -1,11 +1,12 @@
 "use client";
 import Providers from "@/components/Providers";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Header from "@/components/layout/Header";
 import { usePathname } from "next/navigation";
+
 
 export default function RootLayout({
   children,
@@ -26,7 +27,7 @@ export default function RootLayout({
         >
            {!hideHeader && <Header />}
           {children}
-          <ToastContainer position="top-right" autoClose={3000} theme="colored"/>
+          <ToastContainer position="top-right" autoClose={3000}/>
         </ThemeProvider>
         </Providers>
       </body>
