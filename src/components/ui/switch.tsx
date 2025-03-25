@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as SwitchPrimitive from "@radix-ui/react-switch"
-
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import * as SwitchPrimitive from "@radix-ui/react-switch";
+import { Sun, Moon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function Switch({
   className,
+  theme, // Add theme prop
   ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+}: React.ComponentProps<typeof SwitchPrimitive.Root> & { theme?: string }) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
@@ -21,11 +22,17 @@ function Switch({
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={cn(
-          "bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0"
+          "bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0 flex items-center justify-center"
         )}
-      />
+      >
+        {theme === "dark" ? (
+          <Moon className="h-3 w-3 text-sky-500" />
+        ) : (
+          <Sun className="h-3 w-3 text-yellow-500" />
+        )}
+      </SwitchPrimitive.Thumb>
     </SwitchPrimitive.Root>
-  )
+  );
 }
 
-export { Switch }
+export { Switch };

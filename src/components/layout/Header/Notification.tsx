@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -11,6 +12,7 @@ import React from "react";
 import { FaBell } from "react-icons/fa";
 
 export default function Notification() {
+    
   const notifications = [
     {
       id: 1,

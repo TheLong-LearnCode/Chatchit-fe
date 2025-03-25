@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Switch } from "@/components/ui/switch";
 
@@ -13,14 +12,13 @@ export function ModeToggle() {
   };
 
   return (
-    <div className="flex items-center space-x-2">
-      <Sun className="h-5 w-5 text-yellow-500" />
+    <div className="flex items-center space-x-8">
       <Switch
         checked={theme === "dark"}
         onCheckedChange={toggleTheme}
         aria-label="Toggle theme"
+        theme={theme}
       />
-      <Moon className="h-5 w-5 text-blue-500" />
     </div>
   );
 }

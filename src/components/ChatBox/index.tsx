@@ -56,7 +56,9 @@ export default function ChatBox() {
     socketRef.current.emit(
       "newMessage",
       JSON.stringify({
+        conversationID: "67def3b97c3a95ec48d1657f",
         content: input,
+        userID: id,
       })
     );
   };
@@ -314,7 +316,7 @@ export default function ChatBox() {
                   <BsEmojiSmile />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent  className="w-48 translate-x-[-190px]">
+              <PopoverContent className="w-48 translate-x-[-190px]">
                 <EmojiPicker
                   onEmojiClick={(emojiData) =>
                     setInput((prev) => prev + emojiData.emoji)
