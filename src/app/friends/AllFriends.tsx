@@ -12,11 +12,38 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import { getAllFriend, getProfile, unFriend } from "@/service/api";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 
 export default function AllFriends() {
+  const [allFriend, setAllFriend] = useState([]);
+
+  useEffect(() => {
+    const fetchApiAllFriend = async () => {
+      const response = await getAllFriend();
+      setAllFriend(response);
+    };
+    fetchApiAllFriend();
+  }, []);
+
+  const handleUnFriend = async (id: string) => {
+    try {
+      const respone = await unFriend(id);
+      if (respone) {
+        const updatedAllFriends = [...allFriend];
+        const index = allFriend.findIndex((req: any) => req._id === id);
+        if (index !== -1) {
+          updatedAllFriends.splice(index, 1);
+        }
+        setAllFriend(updatedAllFriends);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="mb-4 w-full flex items-center justify-center">
@@ -27,43 +54,56 @@ export default function AllFriends() {
       </div>
 
       <ul className="space-y-2">
-        <li className="p-3 bg-zinc-200 text-zinc-950 rounded-lg shadow-sm flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Avatar className="w-16 h-16">
-              <AvatarImage
-                src={"/avatar.jpg"}
-                alt={"Khoa Chó"}
-                className="w-16 h-16"
-              />
-            </Avatar>
-            <span className="font-medium">Khoa Chó</span>
-          </div>
-          <div className="flex space-x-2">
-            <Button className="bg-sky-600 hover:bg-sky-700 duration-300 ease-in-out px-8 text-zinc-100">
-              Nhắn tin
-              <span>
-                <IoChatbubbleEllipsesSharp />
-              </span>
-            </Button>
-            <AlertDialog>
-              <AlertDialogTrigger>
-              <Button className="bg-rose-600 hover:bg-rose-700 duration-300 ease-in-out px-8 text-zinc-100">Hủy kết bạn</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent className="bg-zinc-800">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Bạn chắc chứ?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Bấm xác nhận để hủy kết bạn với <strong className="text-zinc-100">Khoa Chó</strong>
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Hủy</AlertDialogCancel>
-                  <AlertDialogAction>Xác nhận</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        </li>
+        {allFriend &&
+          allFriend.map((friend: any, index) => (
+            <li
+              className="p-3 bg-zinc-300 text-zinc-950 rounded-lg shadow-sm flex items-center justify-between"
+              key={index}
+            >
+              <div className="flex items-center space-x-3">
+                <Avatar className="w-16 h-16">
+                  <AvatarImage
+                    src={friend.image || "avatarUnknow.png"}
+                    alt={friend.name}
+                    className="w-16 h-16"
+                  />
+                </Avatar>
+                <span className="font-medium">{friend.name}</span>
+              </div>
+              <div className="flex space-x-2">
+                <Button className="bg-sky-700 hover:bg-sky-800 duration-300 ease-in-out px-8 text-zinc-100">
+                  Nhắn tin
+                  <span>
+                    <IoChatbubbleEllipsesSharp />
+                  </span>
+                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <Button className="bg-rose-800 hover:bg-rose-900 duration-300 ease-in-out px-8 text-zinc-100">
+                      Hủy kết bạn
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="bg-zinc-950  border-2 border-b-accent-foreground ">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Bạn chắc chứ?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Bấm xác nhận để hủy kết bạn với{" "}
+                        <strong className="text-zinc-100">{friend.name}</strong>
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => handleUnFriend(friend._id)}
+                      >
+                        Xác nhận
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );

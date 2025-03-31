@@ -11,13 +11,16 @@ import { IUser } from "@/types/user";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserFriends } from "react-icons/fa";
+import { useSocket } from "@/socket.io/socketContext";
 
 export default function UserDropdown({ user }: { user: IUser }) {
   const router = useRouter();
+  const { socket } = useSocket();
+  if (!socket) return;
   return (
     <div>
       <DropdownMenu>
@@ -47,7 +50,15 @@ export default function UserDropdown({ user }: { user: IUser }) {
               </DropdownMenuShortcut>
             </DropdownMenuItem>
 
-            <DropdownMenuItem onSelect={() => signOut()}>
+            <DropdownMenuItem
+              onSelect={async () => {
+                if (socket) {
+                  socket.disconnect();
+                }
+
+                await signOut(); 
+              }}
+            >
               Log Out
               <DropdownMenuShortcut>
                 <IoLogOut />

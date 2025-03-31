@@ -11,20 +11,19 @@ import { SiAdblock, SiDreamstime } from "react-icons/si";
 import SuggestedFriends from "@/app/friends/SuggestedFriends";
 import { FaBoltLightning } from "react-icons/fa6";
 
-
 export default function Friends() {
   return (
     <div className="p-6  min-h-screen">
-      <div className="max-w-4xl mx-auto shadow-md dark:bg-zinc-900 rounded-lg p-6">
+      <div className="max-w-4xl mx-auto shadow-md dark:bg-zinc-900 rounded-lg p-4">
         <Tabs defaultValue="all-friends" className="w-full">
-          <TabsList className="flex justify-center space-x-4 mb-6 w-full">
+          <TabsList className="flex justify-center space-x-2  mb-6 w-full">
             <TabsTrigger
               value="all-friends"
               className="px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-gray-800 hover:border-gray-400 transition"
             >
               All Friends
               <span className="text-sky-500">
-              <GiThreeFriends />
+                <GiThreeFriends />
               </span>
             </TabsTrigger>
 
@@ -34,7 +33,7 @@ export default function Friends() {
             >
               Requests
               <span className="text-rose-500">
-              <SiDreamstime />
+                <SiDreamstime />
               </span>
             </TabsTrigger>
 
@@ -54,7 +53,7 @@ export default function Friends() {
             >
               Suggested
               <span className="text-yellow-500">
-              <FaBoltLightning />
+                <FaBoltLightning />
               </span>
             </TabsTrigger>
 
@@ -64,7 +63,7 @@ export default function Friends() {
             >
               Black List
               <span className="text-amber-500">
-              <SiAdblock />
+                <SiAdblock />
               </span>
             </TabsTrigger>
           </TabsList>

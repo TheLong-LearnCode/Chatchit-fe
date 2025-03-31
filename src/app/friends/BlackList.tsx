@@ -19,7 +19,7 @@ export default function BlackList() {
       </div>
 
       <ul className="space-y-2">
-        <li className="p-3 bg-zinc-200 text-zinc-950 rounded-lg shadow-sm flex items-center justify-between">
+        <li className="p-3 bg-zinc-300 text-zinc-950 rounded-lg shadow-sm flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Avatar className="w-16 h-16">
               <AvatarImage

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -8,11 +9,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaBell } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import { io } from "socket.io-client";
+import { any } from "zod";
 
 export default function Notification() {
-    
+
   const notifications = [
     {
       id: 1,
